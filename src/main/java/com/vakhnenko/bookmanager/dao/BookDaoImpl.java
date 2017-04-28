@@ -23,6 +23,7 @@ public class BookDaoImpl implements BookDao {
     public void addBook(Book book) {
         Session session = this.sessionFactory.openSession();
         session.persist(book);
+        session.flush();
         logger.info("Book successfully saved. Book details: " + book);
     }
 
@@ -30,6 +31,7 @@ public class BookDaoImpl implements BookDao {
     public void updateBook(Book book) {
         Session session = this.sessionFactory.openSession();
         session.update(book);
+        session.flush();
         logger.info("Book successfully updated. Book details: " + book);
     }
 
@@ -40,6 +42,7 @@ public class BookDaoImpl implements BookDao {
 
         if (book != null) {
             session.delete(book);
+            session.flush();
             logger.info("Book successfully deleted. Book details: " + book);
         } else {
             logger.info("Book not found!");
